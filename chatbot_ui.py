@@ -4,8 +4,7 @@ import re
 import tempfile
 import PyPDF2
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-import chromadb
-from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
+
 from sentence_transformers import SentenceTransformer
 import spacy
 from collections import defaultdict
@@ -22,7 +21,8 @@ __import__('pysqlite3')
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 torch.backends.cuda.enable_mem_efficient_sdp(False)
 torch.backends.cuda.enable_math_sdp(False)
-
+import chromadb
+from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
 class ChatBot:
     def __init__(self, model_name="Qwen/Qwen2-1.5B-Instruct"):
         self.model_name = model_name
