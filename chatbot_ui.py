@@ -16,9 +16,10 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 __import__('pysqlite3')
 import sys
+
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 torch.backends.cuda.enable_mem_efficient_sdp(False)
-torch.backends.cuda.enable_math_sdp(True)
+torch.backends.cuda.enable_math_sdp(False)
 
 class ChatBot:
     def __init__(self, model_name="Qwen/Qwen2-1.5B-Instruct"):
