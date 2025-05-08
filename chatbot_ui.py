@@ -14,7 +14,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 nlp = spacy.load("en_core_web_sm")
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
-
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 torch.backends.cuda.enable_mem_efficient_sdp(False)
 torch.backends.cuda.enable_math_sdp(True)
 
@@ -63,7 +65,7 @@ class ChatBot:
         outputs = self.model.generate(
             **inputs,
             max_new_tokens=100,
-            do_sample=False,
+            do_sample=True,
             temperature=0.2,
             top_p=1.0,
             num_beams=1,
